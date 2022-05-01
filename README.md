@@ -3,7 +3,7 @@
 This is the implementation of a robust system for real time monitoring of highways. Various sensors have been deployed on highway which report the status of the same to a central control station.
 
 <p align="Left">
-<img src="images/Logo.jpg" width="500"/>
+<img src="images/Logo.jpg" width="800"/>
 </p>
 
 The highway monitoring system is divided into different modules:
@@ -26,7 +26,7 @@ All the sensors used [ZigBee](https://www.digi.com/lp/xbee) protocol for wireles
 
 Each module is described below:
 
-### [Audio Signal Based Accident Detection](Speech signal processing)
+### Audio Signal Based Accident Detection(Speech signal processing)
 
 The input to the system is a 3-s segment of audio signal. The system can be operated in two modes: the
 two-class and multiclass modes. The output of the two-class mode is a label of "crash" or "noncrash." In the multiclass
