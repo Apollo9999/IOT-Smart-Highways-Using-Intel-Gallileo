@@ -1,10 +1,31 @@
 # IOT-Smart-Highways-Using-Intel-Gallileo
 
-This is the implementation of a robust system for real time monitoring of highways. Various sensors have been deployed on highway which report the status of the same to a central control station.
+Road traffic accidents remain a real scourge. Despite improved road safety, particularly in developed countries,every year, road accidents claim the lives of 1.3 million people worldwide.Low-income and middle-income countriesaccount for 93% of the no of deaths, while the same countries account for only 54% of global feet and economiccost of these accidents exceeds$500 billion.Though it is claimed that self-driving cars could eventually improvesafety, their feasibility is yet to beestablished and they come at prohibitive costs. Also, vehicle-to-vehicle (V2V)communication requires the installation of signal receivers built along roadsides, known as roadside units (RSU), which, of course, wouldrequire a massive infrastructure investment. Moreover, it may not be viable to provide such infrastructure in ruraland less developed areas where collision warning systems are most needed. Hence to tackle the global crisis ofroad safety, we have developed a low-cost, easily implementable and disruptive GNSS-based collision warning system innovation We imagine the cars of tomorrow to work as a cooperative, organized and harmonious organismrather thanindividual and independent vehicles.Our solution requires better satellite navigation infrastructure and faster mobile Internet speeds, both of which areon the verge of becoming a reality.Since the past three years, the world of satellite navigation is undergoing dramatic changes with the rapiddevelopment of multi-constellation Global Navigation Satellite Systems (GNSS). By early 2020, all the five major GNSS constellations, including GALILEO, GLONASS and BeiDou, will be operational and will cover most parts ofthe world. As a result, about 120 satellites will be available for precise positioning and about 30 satellites will be  inview from any given location, enhancing accuracy, speed and integrity of location data.Technologies such as 5G and LTE could drop network latency by almost 10 times compared to latency by almost 10 times compared to the urrent speeds,and thus make mobile Internet the ideal medium of communicating location data among vehicles.Further, with the development of stream processing, Fast Data and Big Data platforms, applications that require
+real-time dataprocessing, such as collision avoidance, can become a reality. 
+
+
+Project objective is to save the lives of people  with  the implementation of a robust system for real time monitoring of highways. Various sensors have been deployed on highway which report the status of the same to a central control station.Project were integrated using Intel Galileo Gen 2 IoT kit. Arduino IDE was used to write sequential codes for the modules.All the sensors used ZigBee protocol for wireless serial communication.MATLAB was used to detect accident sounds from the speech signals obtained.Each module is described below: Sound Signal Based Accident Detection BySpeech signal processing
+The input to the system is a 3-s segment of audio signal. The system can be operated in two modes: the two-class and multiclass modes. The output of the two-class mode is a label of "crash" or "noncrash." In the multiclass mode of operation, the system identifies crashes as well as several types of noncrash incidents, including normal traffic and construction sounds. The system is composed of three main signal processing stages: feature extraction,
+feature reduction, and classification.Network of audio sensors installed on the highway collect the data which is first preprocessed and their intensity is calculated by local(nearer to sensor) Intel Galileo Gen-2.If the intensity of captured data is higher than threshold then Intel Galileo sends this entire data frame to command center usingwireless communication (Xbee).At command center, from given data audio signal is reconstructed. After reconstruction of the signal one can can do the re sampling on desired rate (in this case it is 16 kHz).After Preprocessing and resampling of the data, Spectrogramic analysis is done for accident and non-accident audio signals.Then MFCC of the data frame is calculated and KNN classifier is used for classification. Training has been done with numerous accident and non accident sound samples.Classifier is providing very high efficiency classification.Figures below show spectrograms of accident and non-accident sound signals.
+*Collision Avoidance System using IR sensors
+*Collision avoidance sensors provide analog proximity measurements for various collision occurring hazards.
+*Collision avoidance sensors are used to prevent collision of automatic guided vehicles with either to some other
+vehicle or person moving on the road. In addition, collision avoidance sensors are also used as a protective system
+in robot arms and docking bays, and as a safety system in automatic shelving.
+The system comprises of 3 components • IR transmitters on the fence • IR sensors mounted on the vehicle • Intel
+galileo gen 2 mounted on vehicle .The IR transmitters on the fence create a region of IR rays around the
+fence.When the vehicle is in close proximity of the fence, the IR sensors sense the rays and send the signal to the
+
+
 
 <p align="Left">
 <img src="images/Logo.jpg" width="800"/>
 </p>
+
+## Hardware
+
+The aforementioned modules were integrated using [Intel Galileo Gen 2](https://software.intel.com/en-us/iot/hardware/galileo) IoT kit. Arduino IDE was used to write sequential codes for the modules. 
+
 
 The highway monitoring system is divided into different modules:
 * **Smart fencing**
@@ -14,9 +35,6 @@ The highway monitoring system is divided into different modules:
 * **Activity based road light**
 * **Collision avoidance system**
 
-## Hardware
-
-The aforementioned modules were integrated using [Intel Galileo Gen 2](https://software.intel.com/en-us/iot/hardware/galileo) IoT kit. Arduino IDE was used to write sequential codes for the modules. 
 
 <p align="center">
 <img src="images/16106796_10209857079115973_925678796_o.png" width="500"/>
@@ -96,13 +114,3 @@ then we hear incidents of vehicles falling off the cliff resulting in casualties
 Another aim of this module is to detect landslides which are too very common in hilly terrains. The same method will
 be used to detect the impact of debris on the fence so that the alert can be broadcasted.
 
-### Wireless Module
-
-Xbee has been used for wireless communication. Xbee works on Zigbee protocol and has satisfactory pecifications: 2.4GHz, range 1 mile approx., point to point as well as mesh network support, can work on UDP as well as TCP, low power requirements and also automatically goes to sleep when not used, thus saving power. Here used mode is point to point communication model over UDP. One Xbee is configured as router and connected with system on the controller side, other Xbee is configured as Coordinator and connected with Galileo Gen 2. Both the Xbee are configured in AT mode which is a transparent mode with fix destination address. Both the Xbee can send and receive data simultaneously. Xbee
-have fix MAC address, so for point to point communication Destination High(DH) and Destination Low(DL) addresses of
-other Xbee has to match with the MAC of current one. For fix DH and DL, Xbee uses UDP as their transport protocol.
-
-
-For a simple model, the point to point communication works good but during practical application there would be a large mesh of network handling different sensors deployed at different sites. Fortunately, Xbee has API mode in which Xbee first search for another remote Xbee and enquires about it’s MAC address to send data. Xbee in API mode use TCP as
-it’s transport layer protocol. We can make any types of mesh or network of layers using Xbee, so while planning deploy
-map of sensors, Xbee configurations should be kept in mind.
