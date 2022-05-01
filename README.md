@@ -3,7 +3,7 @@
 This is the implementation of a robust system for real time monitoring of highways. Various sensors have been deployed on highway which report the status of the same to a central control station.
 
 <p align="center">
-<img src="images/Internet-of-things.jpg" width="500"/>
+<img src="images/16106796_10209857079115973_925678796_o.png" width="500"/>
 </p>
 
 The highway monitoring system is divided into different modules:
