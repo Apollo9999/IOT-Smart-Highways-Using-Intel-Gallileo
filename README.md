@@ -2,7 +2,7 @@
 
 This is the implementation of a robust system for real time monitoring of highways. Various sensors have been deployed on highway which report the status of the same to a central control station.
 
-<p align="center">
+<p align="Left">
 <img src="images/Logo.jpg" width="500"/>
 </p>
 
